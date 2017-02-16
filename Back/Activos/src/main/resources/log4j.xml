@@ -12,7 +12,7 @@
 	</appender>
 
 	<!-- Application logger -->
-	<logger name="Activos">
+	<logger name="activo">
 		<level value="info" />
 	</logger>
 

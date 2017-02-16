@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-sm-12 ">
+    <form class="form-horizontal" role="form" name="formActivo" ng-init="activoCtrl.initActivo()">
+      <div class="ng-scope" ui-view="">
+        <h1 class="page-header">Activo</h1>
+        <!-- Filtros -->
+        <section>
+
+          <div class="row-box">
+            <div class="col-sm-5">
+              <div class="form-group form-group-sm">
+                <label class="control-label col-sm-5" for="tipo">Tipo activo</label>
+                <div class="col-sm-7">
+                  <ui-select data-ng-model="activoCtrl.tipo" id="tipo" required>
+                    <ui-select-match placeholder="Seleccione">{{$select.selected.nombre}}</ui-select-match>
+                    <ui-select-choices  repeat="iterador in activoCtrl.listaTipo | filter: $select.search">
+                      <div ng-bind-html="iterador.nombre | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="form-group form-group-sm">
+                <label class="control-label col-sm-5" for="fechaCompra">Fecha</label>
+                <div class="col-sm-7">
+                  <input class="form-control" id= "fechaCompra"type="text" ng-model="activoCtrl.fechaCompra">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-box">
+            <div class="col-sm-5">
+              <div class="form-group form-group-sm">
+                <label class="control-label col-sm-5" for="serial">Serial</label>
+                <div class="col-sm-7">
+                  <input class="form-control" id= "serial"type="text" ng-model="activoCtrl.serial">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-btn text-center">
+            <button class="btn btn-sm btn-primary button-funcionario"
+                    ng-click="activoCtrl.initActivo()"
+                    uib-tooltip="Buscar Activo" tooltip-placement="bottom"
+                    type="button">
+              <i class="fa fa-search"></i> Buscar
+            </button>
+            <button class="btn btn-sm btn-info button-funcionario"
+                    ui-sref="activo.crear"
+                    uib-tooltip="Crear Activo" tooltip-placement="bottom"
+                    type="button">
+              <i class="fa fa-plus"></i> Crear
+            </button>
+            <button class="btn btn-sm btn-info button-funcionario"
+                    ng-click="activoCtrl.limpiarFiltros()"
+                    uib-tooltip="Limpiar" tooltip-placement="bottom"
+                    type="button">
+              <i class="fa fa-trash"></i> Limpiar
+            </button>
+          </div>
+        </section>
+        <!-- Tabla -->
+        <section>
+          <div class="row-box ">
+            <div class="table-responsive">
+              <table class="table table-striped" md-table>
+                <thead md-head>
+                <tr md-row>
+                  <th md-column>Serial </th>
+                  <th md-column>Nombre</th>
+                  <th md-column>Descripción</th>
+                  <th md-column>Fecha</th>
+                  <th md-column>Fecha baja</th>
+                  <th md-column>Tipo</th>
+                  <th md-column>Estado</th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row ng-repeat="iterador in activoCtrl.listaActivo">
+                  <td md-cell>{{iterador.serial}}</td>
+                  <td md-cell>{{iterador.nombre}}</td>
+                  <td md-cell>{{iterador.descripcion}}</td>
+                  <td md-cell>{{iterador.fecha_compra}}</td>
+                  <td md-cell>{{iterador.fecha_baja}}</td>
+                  <td md-cell>{{iterador.tipo}}</td>
+                  <td md-cell>{{iterador.estado}}</td>
+                </tr>
+                </tbody>
+              </table>
+            p  {{activoCtrl.listaActivo[0].serial}}
+            </div>
+          </div>
+        </section>
+      </div>
+    </form>
+  </div>
+</div>
